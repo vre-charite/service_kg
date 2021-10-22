@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: kg
-          image: 10.3.7.221:5000/kg:<VERSION>
+          image: 10.32.42.225:5000/kg:<VERSION>
           ports:
             - containerPort: 5081
           env:
