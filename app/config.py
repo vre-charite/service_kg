@@ -27,7 +27,7 @@ class ConfigClass(object):
     # TODO move it to vault
     BBN_ENDPOINT = "http://10.3.7.220/kg/v1" if os.environ.get('env', "test") == "test" else "http://nexus-delta.utility:80/kg/v1"
     BBN_ORG = "charite"
-    BBN_PROJECT = "VRE_Datasets"
+    BBN_PROJECT = "Lesion2TVB"
 
     # test keycloak endpoint NOTE update to dev later
     KEYCLOAK_URL = vault["KEYCLOAK_URL"] + '/vre'
