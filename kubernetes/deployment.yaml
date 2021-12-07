@@ -27,7 +27,7 @@ spec:
             - containerPort: 5081
           env:
           - name: env
-            value: "dev"
+            value: "charite"
           - name: CONFIG_CENTER_ENABLED
             value: "true"
           - name: CONFIG_CENTER_BASE_URL
