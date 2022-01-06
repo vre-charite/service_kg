@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: kg
-          image: 10.32.42.225:5000/kg:<VERSION>
+          image: s-hdp-vre-v007.charite.de/kg:<VERSION>
           ports:
             - containerPort: 5081
           env:
