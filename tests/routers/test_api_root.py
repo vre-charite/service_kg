@@ -18,11 +18,15 @@
 # permissions and limitations under the Licence.
 # 
 
-from fastapi import FastAPI
-from .routers import api_root
-from .routers.v1 import resource_action
+import pytest
+
+from app.config import ConfigClass
 
 
-def api_registry(app: FastAPI):
-    app.include_router(api_root.router, prefix="/v1")
-    app.include_router(resource_action.router, prefix="/v1")
+@pytest.mark.asyncio
+async def test_root_request_should_return_app_status(test_async_client):
+    response = await test_async_client.get('/v1/')
+    assert response.status_code == 200
+    assert response.json() == {
+        "message": "Service Knowledge Graph On, Version: " + ConfigClass.version
+    }

@@ -18,11 +18,28 @@
 # permissions and limitations under the Licence.
 # 
 
-import uvicorn
-from app.main import create_app
+import pytest
+
+from fastapi.testclient import TestClient
+from async_asgi_testclient import TestClient as TestAsyncClient
+
 from app.config import ConfigClass
+from run import app
 
-app = create_app()
+@pytest.fixture
+def test_client():
+    return TestClient(app)
 
-if __name__ == "__main__":
-    uvicorn.run("run:app", host=ConfigClass.host, port=ConfigClass.port, log_level="info", reload=True)
+
+@pytest.fixture
+def test_async_client():
+    return TestAsyncClient(app)
+
+
+@pytest.fixture(autouse=True)
+def mock_settings(monkeypatch):
+    monkeypatch.setattr(ConfigClass, 'BBN_PROJECT', 'test_project')
+    monkeypatch.setattr(ConfigClass, 'BBN_ORG', 'test_org')
+    monkeypatch.setattr(ConfigClass, 'KEYCLOAK_ENDPOINT', 'http://fake_keycloak_url')
+    monkeypatch.setattr(ConfigClass, 'BBN_ENDPOINT', 'http://endpoint/kg/v1')
+    monkeypatch.setattr(ConfigClass, 'env', 'test')

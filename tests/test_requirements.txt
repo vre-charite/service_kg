@@ -18,20 +18,21 @@
 // permissions and limitations under the Licence.
 // 
 
+pytest==6.2.5
+pytest-env==0.6.2
 fastapi==0.62.0
 fastapi-utils==0.2.1
 uvicorn==0.12.3
 gunicorn==20.0.4
 uvloop==0.14.0
 httptools==0.1.1
+requests==2.24.0
 PyJWT==1.4.2
 python-multipart==0.0.5
 python-json-logger==0.1.11
+pytest-httpx==0.20.0
 aiofiles==0.6.0
-python-dotenv==0.19.1
-pydantic==1.8.2
-httpx==0.22.0
-opentelemetry-exporter-jaeger==1.6.2
-opentelemetry-instrumentation==0.27b0
-opentelemetry-instrumentation-fastapi==0.27b0
-opentelemetry-instrumentation-httpx==0.27b0
+redis==3.5.3
+async-asgi-testclient==1.4.9
+pytest-asyncio==0.17.2
+pytest-mock==3.7.0
