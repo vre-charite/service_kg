@@ -1,8 +1,8 @@
 image: docker:latest
 
 variables:
-  REGISTRY: s-hdp-vre-v007.charite.de
-  CONTAINER_IMAGE: ${REGISTRY}/kg:${CI_COMMIT_SHORT_SHA}
+  REGISTRY: registry.bihealth.org
+  CONTAINER_IMAGE: ${REGISTRY}/vre/kg:${CI_COMMIT_SHORT_SHA}
 
 build:
   stage: build
@@ -13,10 +13,10 @@ build:
     - docker build --build-arg http_proxy=http://proxy.charite.de:8080/ --build-arg https_proxy=http://proxy.charite.de:8080/ -t ${CONTAINER_IMAGE} .
     - docker push ${CONTAINER_IMAGE}
 
-deploy:
-  stage: deploy
-  tags:
-    - VRE-Deployment
-  script:
-    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" kubernetes/deployment.yaml
-    - kubectl apply -f kubernetes/deployment.yaml
+#deploy:
+#  stage: deploy
+#  tags:
+#    - VRE-Deployment
+#  script:
+#    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" kubernetes/deployment.yaml
+#    - kubectl apply -f kubernetes/deployment.yaml
