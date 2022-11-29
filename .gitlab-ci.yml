@@ -25,8 +25,8 @@ deploy:
     - git clone https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git
     - sed -r -i -e "s/(^${TARGET_RELEASE}_app_version\s*=\s*).*/\1\"${CI_COMMIT_SHORT_SHA}\"/" vre-infra/terraform/config/charite/charite.tfvars
     - cat vre-infra/terraform/config/charite/charite.tfvars|grep -i ^${TARGET_RELEASE}_app_version
-#    - git config user.name ${DOCKER_USERNAME} && git config user.email "indoc-devops@indocresearch.org"
-##    - git config --global user.password ${DOCKER_PASSWORD}
+    - 'git config user.name ${DOCKER_USERNAME} && git config user.email "indoc-devops@indocresearch.org"'
+    - 'git config --global user.password ${DOCKER_PASSWORD}'
     - cd vre-infra
     - git diff 
     - git stage terraform/config/charite/charite.tfvars
