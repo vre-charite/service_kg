@@ -3,6 +3,7 @@ image: docker:latest
 variables:
   REGISTRY: registry.bihealth.org
   CONTAINER_IMAGE: ${REGISTRY}/vre/service_kg:${CI_COMMIT_SHORT_SHA}
+  TARGET_RELEASE: kg
 
 build:
   stage: build
@@ -13,10 +14,13 @@ build:
     - docker build --build-arg pip_username=${PIP_USERNAME} --build-arg pip_password=${PIP_PASSWORD} --build-arg http_proxy=http://proxy.charite.de:8080/ --build-arg https_proxy=http://proxy.charite.de:8080/ -t ${CONTAINER_IMAGE} .
     - docker push ${CONTAINER_IMAGE}
 
-#deploy:
-#  stage: deploy
-#  tags:
-#    - VRE-Deployment
-#  script:
-#    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" kubernetes/deployment.yaml
-#    - kubectl apply -f kubernetes/deployment.yaml
+deploy:
+  stage: deploy
+  tags:
+    - VRE-Deployment
+  script:
+    - git clone https://git.bihealth.org/vre/vre-infra.git
+    - sed -r -i -e "s/(^${TARGET_RELEASE}_app_version\s*=\*s).*/\1\${CI_COMMIT_SHORT_SHA}\/" vre-infra/terraform/config/charite/charite.tfvars
+    - echo TARGET_RELEASE=${TARGET_RELEASE}
+    - echo CONTAINER_IMAGE=${CONTAINER_IMAGE}
+    - cat vre-infra/terraform/config/charite/charite.tfvars|grep -i ^${TARGET_RELEASE}_app_version
