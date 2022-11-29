@@ -23,5 +23,3 @@
 # Knowledge Graph
 
 Knowledge Graph
-
-
