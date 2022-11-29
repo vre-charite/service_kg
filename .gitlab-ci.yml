@@ -31,6 +31,6 @@ deploy:
     - git diff 
     - git stage terraform/config/charite/charite.tfvars
     - git status
-    - git pull https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git HEAD:refs/heads/master --rebase
+    - git pull https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git HEAD:refs/heads/master 
 #    - git diff-index --quiet HEAD || git commit  -m "[ci skip] Terraform Deployment: ${TARGET_RELEASE} to ${CI_COMMIT_SHORT_SHA} "
 ##    - git push https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git HEAD:refs/heads/master
