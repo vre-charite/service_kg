@@ -24,7 +24,7 @@ deploy:
     - cat vre-infra/terraform/config/charite/charite.tfvars|grep -i ^${TARGET_RELEASE}_app_version
 #    - git config user.name ${DOCKER_USERNAME} && git config user.email "indoc-devops@indocresearch.org"
 #    - git config --global user.password ${DOCKER_PASSWORD}
-    - git diff
+    - git diff vre-infra
     - git stage vre-infra/terraform/config/charite/charite.tfvars
     - git status
 #    - git pull https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git HEAD:refs/heads/master
