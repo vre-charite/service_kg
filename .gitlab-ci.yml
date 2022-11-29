@@ -20,8 +20,6 @@ deploy:
     - VRE-Deployment
   script:
     - git clone https://${DOCKER_USER}:${DOCKER_PASSWORD}@git.bihealth.org/vre/vre-infra.git
-    - echo TARGET_RELEASE=${TARGET_RELEASE}
-    - echo CONTAINER_IMAGE=${CONTAINER_IMAGE}
     - sed -r -i -e "s/(^${TARGET_RELEASE}_app_version\s*=\s*).*/\1\"${CI_COMMIT_SHORT_SHA}\"/" vre-infra/terraform/config/charite/charite.tfvars
     - cat vre-infra/terraform/config/charite/charite.tfvars|grep -i ^${TARGET_RELEASE}_app_version
     - git config --global user.name ${DOCKER_USERNAME} && git config --global user.email "indoc-devops@indocresearch.org"
