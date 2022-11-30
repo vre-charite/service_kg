@@ -1,3 +1,3 @@
---extra-index-url https://${DOCKER_USERNAME}:${DOCKER_PASSWORD}@https://git.bihealth.org/api/v4/groups/vre/-/packages/pypi/simple
+--extra-index-url https://${DOCKER_USERNAME}:${DOCKER_PASSWORD}@git.bihealth.org/api/v4/groups/vre/-/packages/pypi/simple
 common==0.0.20
 logger==0.1.0
